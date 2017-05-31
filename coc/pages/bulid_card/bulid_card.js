@@ -1,4 +1,5 @@
 // pages/bulid_card/bulid_card.js
+
 Page({
   
 // 把三个随机数函数放到工具那里去
@@ -52,7 +53,9 @@ Page({
       return seed / (233280.0);
     };
     return Math.ceil(rnd() * number);
-  }
+  },
+
+
 
 
 })

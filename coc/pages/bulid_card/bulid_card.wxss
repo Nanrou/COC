@@ -1,1 +1,47 @@
 /* pages/bulid_card/bulid_card.wxss */
+
+.h1 { 
+  font-size: 120rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.dice {
+  display: flex;
+  padding-left: 10%;
+  margin-bottom: 10rpx;
+}
+
+.dice .single {
+  padding-left: 20rpx;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+
+.item-list {
+  display: flex;
+  height: 80rpx;
+}
+
+.item-text {
+  font-size: 60rpx;
+  width: 50%;
+}
+
+.item-sum {
+  font-size: 60rpx;
+  width: 18%;
+  text-align: center;
+}
+
+.item-button {
+  font-size: 48rpx;
+  text-align: center;
+  width: 25%;
+  padding:0px;
+  line-height: 72rpx;
+  margin: 0px;
+  margin-left: 10px;
+}
+  

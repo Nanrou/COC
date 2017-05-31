@@ -1,21 +1,38 @@
 <!--pages/bulid_card/bulid_card.wxml-->
-<text>pages/bulid_card/bulid_card.wxml</text>
 
-<view bindtap="DiceAction" style="display: block" >
-  <image src="/images/dice/dice_action.gif" mode="aspectFit"
-  style="width: 120rpx; height: 120rpx; display: {{action}};" ></image>
-  <image src="/images/dice/dice_action.gif" mode="aspectFit"
-  style="width: 120rpx; height: 120rpx; display: {{action}};" ></image>
-  <image src="/images/dice/dice_action.gif" mode="aspectFit"
-  style="width: 120rpx; height: 120rpx; display: {{action}};" ></image>      
-  <image src="/images/dice/dice_{{point1}}.png" mode="aspectFit"
-  style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
-  <image src="/images/dice/dice_{{point2}}.png" mode="aspectFit"
-  style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
-  <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
-  style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+
+
+<text class="h1" >先来投骰子吧</text>
+
+
+<view bindtap="DiceAction" style="visibility: {{ showDice }};" >
+  <view class="dice">
+    <image src="/images/dice/dice_action.gif" mode="aspectFit"
+    class="single"
+    style="display: {{action}};" ></image>
+    <image src="/images/dice/dice_action.gif" mode="aspectFit"
+    class="single"
+    style="display: {{action}};" ></image>
+    <image src="/images/dice/dice_action.gif" mode="aspectFit"
+    class="single"
+    style="display: {{action}};" ></image>
+
+    <image src="/images/dice/dice_{{point1}}.png" mode="aspectFit"
+    style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+    <image src="/images/dice/dice_{{point2}}.png" mode="aspectFit"
+    style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+    <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
+    style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+  </view>
 </view>
 
-<view>
-  <text>最终为: {{ sum }}</text>
-</view> 
+
+
+
+<view class="item-list" >
+  <text class="item-text">体质值(3D6):</text>
+  <text class="item-sum">{{ sum }}</text>
+  <button class="item-button" bindtap="showDice">roll</button>
+</view>
+
+
