@@ -1,0 +1,21 @@
+<!--pages/bulid_card/bulid_card.wxml-->
+<text>pages/bulid_card/bulid_card.wxml</text>
+
+<view bindtap="DiceAction" style="display: block" >
+  <image src="/images/dice/dice_action.gif" mode="aspectFit"
+  style="width: 120rpx; height: 120rpx; display: {{action}};" ></image>
+  <image src="/images/dice/dice_action.gif" mode="aspectFit"
+  style="width: 120rpx; height: 120rpx; display: {{action}};" ></image>
+  <image src="/images/dice/dice_action.gif" mode="aspectFit"
+  style="width: 120rpx; height: 120rpx; display: {{action}};" ></image>      
+  <image src="/images/dice/dice_{{point1}}.png" mode="aspectFit"
+  style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+  <image src="/images/dice/dice_{{point2}}.png" mode="aspectFit"
+  style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+  <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
+  style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+</view>
+
+<view>
+  <text>最终为: {{ sum }}</text>
+</view> 
