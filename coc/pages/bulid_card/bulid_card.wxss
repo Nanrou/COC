@@ -1,25 +1,37 @@
 /* pages/bulid_card/bulid_card.wxss */
 
+/* 头部 */
 .header {
+  display: block;
+  position: fixed;
+  width: 100%;
+  top:0;
+  left:0;
+  margin: 0 auto;
+  background-color: #ffffff;
+  z-index: 1000;
+}
+
+.header .top {
   display: flex;
 }
 
-.header .left {
+.header .top .left {
   display: flex;
   width: 60%;
 }
 
-.header .left span {
+.header .top .left span {
   display: block;
   padding-top: 80rpx;
   padding-left: 60rpx;
 }
 
-.header .left .h1{
+.header .top .left span .h1{
   font-size: 60rpx;
 }
 
-.header .xiongji {
+.header .top .xiongji {
   display: flex;
   width: 130px;
   height: 135px;
@@ -27,7 +39,6 @@
 
 .dicePart {
   display: block;
-
 }
 
 .dice {
@@ -42,20 +53,26 @@
   height: 150rpx;
 }
 
-.item-part {
+/* 属性主体 */
+
+.main {
   display: block;
+  margin-top:460rpx;
+  margin-left: 30rpx;
   font-size: 60rpx;
+}
+
+.item-part {
+  margin-bottom: 20rpx;
 }
 
 .item-part .item {
   display: flex;
   height: 60rpx;
-  margin-bottom: 20rpx;
 }
 
 .item-part .item .item-text {
   width: 50%;
-  margin-left: 15px;
 }
 
 .item-part .item .item-sum {
@@ -64,10 +81,35 @@
 }
 
 .item-part .item .item-button {
-  font-size: 48rpx;
-  width: 15%;
+  font-size: 50rpx;
+  width: 16%;
   padding:0px;
   line-height: 60rpx;
   margin-left: 25px;
 }
-  
+
+.tucao {
+  font-size: 40rpx;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.age_tucao {
+  display: flex;
+  font-size: 40rpx;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.age_tucao text {
+  line-height: 80rpx;
+}
+
+.age_other_part {
+  display: block;
+}
+
+.age_other_part .content {
+  font-size: 40rpx;
+}
+

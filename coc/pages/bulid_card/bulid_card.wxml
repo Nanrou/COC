@@ -1,47 +1,75 @@
 <!--pages/bulid_card/bulid_card.wxml-->
 
-
+<!-- 头部 -->
 <view class="header">
-  <view class="left">
-    <span>
-      <text class="h1" >先来投骰子吧</text>
-    </span>
-  </view>
-  <view >
-    <image src="/images/xiongji.png" mode="aspectFit" class="xiongji"></image>
-  </view>
-</view>
-
-<view class="dicePart">
-  <view class="dice">
-    <image src="/images/dice/dice_action.gif" mode="aspectFit"
-    style="display: {{action}};" ></image>
-    <image src="/images/dice/dice_action.gif" mode="aspectFit"
-    style="display: {{action}};" ></image>
-    <image src="/images/dice/dice_action.gif" mode="aspectFit"
-    style="display: {{action}};" ></image>
-    <image src="/images/dice/dice_{{point1}}.png" mode="aspectFit"
-    style="display: {{result}};" ></image>
-    <image src="/images/dice/dice_{{point2}}.png" mode="aspectFit"
-    style="display: {{result}};" ></image>
-    <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
-    style="display: {{result}};" ></image>
-  </view>
-</view>
-
-
-
-
-<view class="item-part" >
-  <block wx:for="{{property}}" wx:key="name">
-    <view class="item">
-      <text class="item-text">{{item.name}}</text>
-      <text class="item-sum">{{item.sum}}</text>
-      <button class="item-button" bindtap="DiceAction" 
-      data-type="{{item._type}}" data-id="{{index}}">{{item.status}}</button>
+  <view class="top">
+    <view class="left">
+      <span>
+        <text class="h1" >先来投骰子吧</text>
+      </span>
     </view>
-  </block>
+    <view >
+      <image src="/images/xiongji.png" mode="aspectFit" class="xiongji"></image>
+    </view>
+  </view>
+  <view class="dicePart">
+    <view class="dice">
+      <image src="/images/dice/dice_action.gif" mode="aspectFit"
+      style="display: {{action}};" ></image>
+      <image src="/images/dice/dice_action.gif" mode="aspectFit"
+      style="display: {{action}};" ></image>
+
+      <image src="{{ that_dice }}" mode="aspectFit"
+        style="display: {{action}};" ></image>
+
+      <image src="/images/dice/dice_{{point1}}.png" mode="aspectFit"
+      style="display: {{result}};" ></image>
+      <image src="/images/dice/dice_{{point2}}.png" mode="aspectFit"
+      style="display: {{result}};" ></image>
+      <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
+      style="display: {{result}};" ></image>
+
+    </view>
+  </view>
 </view>
+
+
+<!-- 建卡 -->
+<view class="main">
+  <!-- 投骰子部分 -->
+  <view class="item-part" >
+    <block wx:for="{{property}}" wx:key="name">
+      <view class="item">
+        <text class="item-text">{{item.name}}</text>
+        <text class="item-sum">{{item.sum/5}}</text>
+        <button class="item-button" bindtap="diceAction"  
+        disabled="{{item.dice_lock}}"
+        data-type="{{item._type}}" data-id="{{index}}">{{item.status}}</button>
+      </view>
+      <span class="tucao">
+      <text>bbb</text>
+      </span>
+    </block>
+  </view>
+  <!-- 年龄 -->
+  <view>
+    <text>年龄：</text>
+    <slider min="8" max="99" value="38" bindchange="ageAction" show-value 
+    disabled="{{age_switch}}"/>
+    <span class="age_tucao" style="visibility: {{show_age_confirm}}">
+      <text style="width:60%" style="display: {{age_button}}">{{age_confirm_text}}</text>
+      <button bindtap="ageConfirm" style="display: {{age_button}}; margin-left: 150px;" >确认</button>
+    </span>
+    <view class="age_other_part" style="display: {{age_other}}">
+      <text class="content">{{age_content}}</text>
+      <view class="age_item"></view>
+      
+      </view>
+  </view>
+</view>
+
+
+
 
 
 
