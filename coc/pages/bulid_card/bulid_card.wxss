@@ -1,47 +1,73 @@
 /* pages/bulid_card/bulid_card.wxss */
 
-.h1 { 
-  font-size: 120rpx;
+.header {
+  display: flex;
+}
+
+.header .left {
+  display: flex;
+  width: 60%;
+}
+
+.header .left span {
   display: block;
-  margin-bottom: 20rpx;
+  padding-top: 80rpx;
+  padding-left: 60rpx;
+}
+
+.header .left .h1{
+  font-size: 60rpx;
+}
+
+.header .xiongji {
+  display: flex;
+  width: 130px;
+  height: 135px;
+}
+
+.dicePart {
+  display: block;
+
 }
 
 .dice {
   display: flex;
   padding-left: 10%;
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
 }
 
-.dice .single {
-  padding-left: 20rpx;
+.dice image {
+  padding-left: 40rpx;
   width: 150rpx;
   height: 150rpx;
 }
 
+.item-part {
+  display: block;
+  font-size: 60rpx;
+}
 
-.item-list {
+.item-part .item {
   display: flex;
-  height: 80rpx;
+  height: 60rpx;
+  margin-bottom: 20rpx;
 }
 
-.item-text {
-  font-size: 60rpx;
+.item-part .item .item-text {
   width: 50%;
+  margin-left: 15px;
 }
 
-.item-sum {
-  font-size: 60rpx;
+.item-part .item .item-sum {
   width: 18%;
   text-align: center;
 }
 
-.item-button {
+.item-part .item .item-button {
   font-size: 48rpx;
-  text-align: center;
-  width: 25%;
+  width: 15%;
   padding:0px;
-  line-height: 72rpx;
-  margin: 0px;
-  margin-left: 10px;
+  line-height: 60rpx;
+  margin-left: 25px;
 }
   

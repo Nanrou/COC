@@ -1,38 +1,47 @@
 <!--pages/bulid_card/bulid_card.wxml-->
 
 
+<view class="header">
+  <view class="left">
+    <span>
+      <text class="h1" >先来投骰子吧</text>
+    </span>
+  </view>
+  <view >
+    <image src="/images/xiongji.png" mode="aspectFit" class="xiongji"></image>
+  </view>
+</view>
 
-<text class="h1" >先来投骰子吧</text>
-
-
-<view bindtap="DiceAction" style="visibility: {{ showDice }};" >
+<view class="dicePart">
   <view class="dice">
     <image src="/images/dice/dice_action.gif" mode="aspectFit"
-    class="single"
     style="display: {{action}};" ></image>
     <image src="/images/dice/dice_action.gif" mode="aspectFit"
-    class="single"
     style="display: {{action}};" ></image>
     <image src="/images/dice/dice_action.gif" mode="aspectFit"
-    class="single"
     style="display: {{action}};" ></image>
-
     <image src="/images/dice/dice_{{point1}}.png" mode="aspectFit"
-    style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+    style="display: {{result}};" ></image>
     <image src="/images/dice/dice_{{point2}}.png" mode="aspectFit"
-    style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+    style="display: {{result}};" ></image>
     <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
-    style="width: 120rpx; height: 120rpx; display: {{result}};" ></image>
+    style="display: {{result}};" ></image>
   </view>
 </view>
 
 
 
 
-<view class="item-list" >
-  <text class="item-text">体质值(3D6):</text>
-  <text class="item-sum">{{ sum }}</text>
-  <button class="item-button" bindtap="showDice">roll</button>
+<view class="item-part" >
+  <block wx:for="{{property}}" wx:key="name">
+    <view class="item">
+      <text class="item-text">{{item.name}}</text>
+      <text class="item-sum">{{item.sum}}</text>
+      <button class="item-button" bindtap="DiceAction" 
+      data-type="{{item._type}}" data-id="{{index}}">{{item.status}}</button>
+    </view>
+  </block>
 </view>
+
 
 
