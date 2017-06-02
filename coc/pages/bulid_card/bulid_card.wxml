@@ -12,7 +12,7 @@
       <image src="/images/xiongji.png" mode="aspectFit" class="xiongji"></image>
     </view>
   </view>
-  <view class="dicePart">
+  <view class="dicePart" style="display:{{common_dice}}">  <!-- 普通骰子 -->
     <view class="dice">
       <image src="/images/dice/dice_action.gif" mode="aspectFit"
       style="display: {{action}};" ></image>
@@ -28,12 +28,21 @@
       style="display: {{result}};" ></image>
       <image src="/images/dice/dice_{{point3}}.png" mode="aspectFit"
       style="display: {{result}};" ></image>
-
+    </view>
+  </view>
+  <view style="display: {{ dice100 }}">  <!-- 100面骰 -->
+    <view class="dice100Part" >
+      <span>
+      <text>{{dice100_decade}}</text>
+      </span>
+      <span>
+      <text>{{dice100_single}}</text>
+      </span>
     </view>
   </view>
 </view>
 
-
+<scroll-view scroll-y style="height: 580px;" scroll-into-view="{{toView}}">
 <!-- 建卡 -->
 <view class="main">
   <!-- 投骰子部分 -->
@@ -52,7 +61,7 @@
     </block>
   </view>
   <!-- 年龄 -->
-  <view>
+  <view class='age'>
     <text>年龄：</text>
     <slider min="8" max="99" value="38" bindchange="ageAction" show-value 
     disabled="{{age_switch}}"/>
@@ -62,13 +71,34 @@
     </span>
     <view class="age_other_part" style="display: {{age_other}}">
       <text class="content">{{age_content}}</text>
-      <view class="age_item"></view>
-      
+      <view class="age_item">
+        <text class="content">{{age_explanation}}</text>
+        <view style="display: {{age_handler1}}" > <!--20岁以下的处理-->
+          <button bindtap="handlerAge1Dice">{{age_button_text}}</button>
+        </view>
+        <view style="display: {{age_handler2}}">
+          <text class="content">{{age_result}}</text>
+        </view>
+
+         <view style="display: {{age_handler3}}"> <!--20岁以上的处理-->
+          <button bindtap="handlerAge2Dice" disabled="{{dice100_button}}" >{{age_button_text}}</button>
+        </view>
+        <view style="display: {{age_handler4}}; margin-top: 20rpx">
+          <text class="content">{{age_result}}</text>
+        </view>
+        <view style="display: {{age_handler5}}"> <!-- educheck成功的处理 -->
+          <button bindtap="addEdu" disabled="{{dice100_button}}" >{{age_button_text}}</button>
+        </view>
+
+
       </view>
+    </view>
   </view>
+<view id="footer"></view>
+
 </view>
 
-
+</scroll-view>
 
 
 

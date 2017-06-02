@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/bulid_card/bulid_card"
+    "pages/bulid_card/bulid_card",
+    "pages/test/test"
   ],
   "window":{
     "backgroundTextStyle":"light",

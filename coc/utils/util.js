@@ -24,9 +24,6 @@ function rand1(man, min) {
   return Math.floor(Math.random() * (max - min + 1) + 1);
 }
 
-module.exports.rand1 = rand1
-
-
 function rand2() {
   var p_l = [6, 5, 4, 3, 2, 1];
   var i = Math.floor(Math.random() * 6);

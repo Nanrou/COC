@@ -14,6 +14,7 @@
 
 .header .top {
   display: flex;
+  margin-bottom: 10rpx;
 }
 
 .header .top .left {
@@ -52,6 +53,24 @@
   width: 150rpx;
   height: 150rpx;
 }
+
+.dice100Part {
+  display: flex;
+  margin-left: 25%;
+}
+
+.dice100Part span{
+  margin-left: 18px;
+  border-style: solid;
+  border-width: 1px; 
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.dice100Part text{
+  font-size: 120rpx;
+}
+
 
 /* 属性主体 */
 
@@ -94,6 +113,10 @@
   margin-bottom: 20rpx;
 }
 
+.age {
+  margin-right: 50rpx;
+}
+
 .age_tucao {
   display: flex;
   font-size: 40rpx;
@@ -112,4 +135,6 @@
 .age_other_part .content {
   font-size: 40rpx;
 }
-
+.age_item{
+  display: block;
+}
