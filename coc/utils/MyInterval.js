@@ -15,7 +15,7 @@ class MyInterval {
   };
 
   init() {
-    this.interval = setInterval(() => { this.updateTimer() }, 100);
+    this.interval = setInterval(() => { this.updateTimer() }, 75);
   };
 
   updateTimer() {

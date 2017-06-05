@@ -138,3 +138,30 @@
 .age_item{
   display: block;
 }
+
+.age_item span{
+  display: block;
+}
+
+.punitive_point_part{
+  margin-top: 5px;  
+}
+
+.punitive_item{
+  display: flex;
+}
+.punitive_item span{
+  width:25%;
+  line-height: 32px;
+  margin-left: 5px;
+  font-size: 30px;
+}
+
+.punitive_item text{
+  font-size: 26px;
+}
+
+.punitive_item .punitive_slider{
+  width:75%;
+  margin: 10px 0px;
+}

@@ -12,7 +12,7 @@
       <image src="/images/xiongji.png" mode="aspectFit" class="xiongji"></image>
     </view>
   </view>
-  <view class="dicePart" style="display:{{common_dice}}">  <!-- 普通骰子 -->
+  <view class="dicePart" hidden="{{common_dice}}">  <!-- 普通骰子 -->
     <view class="dice">
       <image src="/images/dice/dice_action.gif" mode="aspectFit"
       style="display: {{action}};" ></image>
@@ -50,7 +50,7 @@
     <block wx:for="{{property}}" wx:key="name">
       <view class="item">
         <text class="item-text">{{item.name}}</text>
-        <text class="item-sum">{{item.sum/5}}</text>
+        <text class="item-sum">{{item.sum}}</text>
         <button class="item-button" bindtap="diceAction"  
         disabled="{{item.dice_lock}}"
         data-type="{{item._type}}" data-id="{{index}}">{{item.status}}</button>
@@ -80,15 +80,49 @@
           <text class="content">{{age_result}}</text>
         </view>
 
-         <view style="display: {{age_handler3}}"> <!--20岁以上的处理-->
-          <button bindtap="handlerAge2Dice" disabled="{{dice100_button}}" >{{age_button_text}}</button>
+        <view style="display: {{age_handler3}}"> <!--20岁以上的处理-->
+          <span>{{edu_result_text}}</span>
+          <span>开始进行第{{age_edu_check_times}}次检定</span>
+
+          <button bindtap="handlerAge2Dice" disabled="{{dice100_button}}" 
+          style="display: {{age_handler4}}; margin-top:10px;">{{age_button_text}}</button>
         </view>
-        <view style="display: {{age_handler4}}; margin-top: 20rpx">
+        <view style="display: {{age_handler5}}; margin-top: 20rpx">
           <text class="content">{{age_result}}</text>
         </view>
-        <view style="display: {{age_handler5}}"> <!-- educheck成功的处理 -->
+        <view style="display: {{age_handler6}}"> <!-- educheck成功的处理 -->
           <button bindtap="addEdu" disabled="{{dice100_button}}" >{{age_button_text}}</button>
         </view>
+        <view style="display: {{age_handler7}}">
+          <text> end edu check </text>
+        </view>
+        <!--减少属性-->
+        <view class="punitive_point_part " hidden="{{punitive_point_part}}">
+          <span><text>合计需要减少{{punitive_point}}点，还要减少{{remain_point}}点</text></span>
+          <view class="punitive_list">
+            <view class="punitive_item">
+              <span><text>力量:</text></span>
+              <slider class="punitive_slider" min="{{str_punitive_point_min}}" max="{{str_punitive_point_max}}" data-index="0" bindchange="punitivePointHeadler"
+              backgroundColor="#ff3333" value="{{str_punitive_point_max}}"
+              show-value />
+            </view>    
+            <view class="punitive_item">
+              <span><text>体质:</text></span>
+              <slider class="punitive_slider" min="{{con_punitive_point_min}}" max="{{con_punitive_point_max}}" data-index="1" bindchange="punitivePointHeadler"
+              backgroundColor="#ff3333" value="{{con_punitive_point_max}}"
+              show-value />
+            </view>      
+            <view class="punitive_item">
+              <span><text>敏捷:</text></span>
+              <slider class="punitive_slider" min="{{dex_punitive_point_min}}" max="{{dex_punitive_point_max}}" data-index="2" bindchange="punitivePointHeadler"
+              backgroundColor="#ff3333" value="{{dex_punitive_point_max}}"
+              show-value />
+            </view>
+            <button disabled="{{punitive_point_button}}" type="primary">确认</button>
+            <text>{{punitive_point_text}}</text>       
+          </view>
+        </view>
+
 
 
       </view>
