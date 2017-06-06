@@ -7,7 +7,7 @@ var property_dict = {
   'app': 4, 'pow': 5, 'int': 6, 'edu': 7,
   'luck': 8
 }; 
-var property_list = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var property_list = [0, 0, 0, 0, 0, 0, 0, 0, 0];// 后面会加上amp, phy, hp, mp, mov, san
 var edu_check = false;
 
 var fixed_min_list = []; //fixed_str, fixed_con, fixed_dex;
@@ -28,6 +28,7 @@ Page({
     point2: 1,
     point3: 1,
 
+    show_age_part: true,
     age: 0,
     show_age_confirm: 'hidden', // 年龄确认的显示
     age_confirm_text: '', 
@@ -73,6 +74,9 @@ Page({
     dex_punitive_point_max: 50,
 
     punitive_point_button: true,
+
+    final_property_view: true,
+    final_pro_list: [],
 
 
 
@@ -151,9 +155,26 @@ Page({
       point3: p3,
       property: pro,
     });
-
-    
+    this.check_dice_done();
   },
+
+// 检查所有的骰子是否都投完了
+  check_dice_done: function() {
+    var flag = true;
+
+    for (var i = 0; i < this.data.property.length; i++){
+      if (this.data.property[i].dice_lock == false) {  // 判定是否还有未锁的
+        flag = false;
+        break;
+      };
+    };
+    console.log(flag);
+    if (flag) {
+      this.setData({ show_age_part: false,});
+      this.setData({ toView: 'footer' });  // 定位到底部 
+    };
+  },
+
 
 // 年龄的主逻辑
   ageAction: function(e) {
@@ -165,9 +186,10 @@ Page({
       show_age_confirm: '',
        });
   },
-  ageConfirm: function(e) {
-    var age = this.data.age;
-    var t = '好的，让我们来看看' + age + '岁这个年龄对你的影响';
+
+  ageConfirm: function(e) { // 确认年龄
+
+    var t = '好的，让我们来看看' + this.data.age + '岁这个年龄对你的影响';
 
     this.setData({
       age_content: t,
@@ -245,6 +267,7 @@ Page({
     r = this.data.result === 'none' ? '' : 'none';
 
     this.setData({
+      that_dice: '/images/dice/dice_action.gif' ,
       action: a,
       result: r,
       age_button_text: age_button_text,
@@ -271,7 +294,7 @@ Page({
         age_handler2: '',
         age_result: age_result,
       });
-
+      this.showFinalProperty();
       this.setData({ toView: 'footer' });  // 定位到底部
     };
   },
@@ -313,7 +336,7 @@ Page({
        t = 'check成功 看来年纪大的吃的盐是多一点';
        edu_check = true;
      } else {
-       t = edu_chcek_fail_text = edu_chcek_fail_text + ' again';
+       t = edu_chcek_fail_text = edu_chcek_fail_text;
      };
 
      this.setData({
@@ -361,6 +384,8 @@ Page({
       if (ppoint != 0){
         this.setData({ punitive_point_part: false });
         this.buildPunitivePoint();
+      } else {
+        this.showFinalProperty();
       };
       
     };
@@ -395,6 +420,7 @@ Page({
       this.cirEduCheck();
       }, 2000);
      },
+
 
    handlerDice100: function() {
 
@@ -468,14 +494,10 @@ Page({
     var max_list = [this.data.str_punitive_point_max, this.data.con_punitive_point_max, this.data.dex_punitive_point_max];
     var ppoint = current_value_list[index] - e.detail.value;
 
-    console.log(current_value_list[index], '-', e.detail.value, '=', ppoint);
-
     current_value_list[index] = e.detail.value;
 
     //var ppoint = max_list[index] - e.detail.value; //用掉的惩罚点
     var remain_ppoint = this.data.remain_point - ppoint; //剩下的惩罚点
-
-    console.log(this.data.remain_point, '-', ppoint, '=', remain_ppoint );
 
     //var min_list = [this.data.str_punitive_point_min, this.data.con_punitive_point_min, this.data.dex_punitive_point_min];
     var min_list_name = ['str_punitive_point_min', 'con_punitive_point_min', 'dex_punitive_point_min'];
@@ -503,7 +525,73 @@ Page({
     };
    },
 
+// showFinalProperty
+  showFinalProperty: function() {
+    var amp, phy, tmp = Math.floor(property_list[0] + property_list[2]);
+    if (tmp < 65) {  // 判断伤害加深和体格
+      amp = -2;
+      phy = -2;
+    } else if (tmp < 85){
+      amp = -1;
+      phy = -1;
+    } else if (tmp < 125){
+      amp = 0;
+      phy = 0;
+    } else if (tmp < 165){
+      amp = '1D4';
+      phy = '+1';
+    } else {
+      amp = '1D6';
+      phy = '+2';
+    };
 
+    var hp; // 生命值
+    hp = Math.floor((property_list[1] + property_list[2])/10) ;
+
+    var mov, age = this.data.age; // 移动速度
+    if(property_list[0] < property_list[2] & property_list[3] < property_list[2]){
+      mov = 7;
+    } else if (property_list[0] > property_list[2] & property_list[3] > property_list[2] ){
+      mov = 9;
+    } else {
+      mov = 8;
+    };
+    if (age < 40) {
+    } else if (age < 49){
+      mov = mov - 1;
+    } else if (age < 59){
+      mov = mov - 2;
+    } else if (age < 69){
+      mov = mov - 3;
+    } else if (age < 79){
+      mov = mov - 4;
+    } else if (age < 89){
+      mov = mov - 5;
+    };
+
+    var mp = Math.floor(property_list[5]/5); // 魔法值
+    var san = property_list[5]; // san值
+
+    property_list.push(amp, phy, hp, mp, mov, san);
+
+    var pro_name_list = ['力量：', '体质：', '体型：', '敏捷：', '外貌：', '意志：', '智力：', '教育：', '幸运：', '伤害加深：', '体格：', '生命值：','魔法值:', '移动速度：','SAN值:'];
+
+
+    var final_pro_list = [];
+    for (var i = 0; i < pro_name_list.length; i++) {
+      final_pro_list.push(pro_name_list[i] + property_list[i]);
+    };
+
+    this.setData({
+       final_property_view: false,
+       final_pro_list: final_pro_list,
+       common_dice: 'none',
+       dice100: 'none',
+       punitive_point_part: 'none',
+        });
+    this.setData({ toView: 'footer' });  // 定位到底部
+
+  },
 
 // product random
   rand1: function (max, min) {

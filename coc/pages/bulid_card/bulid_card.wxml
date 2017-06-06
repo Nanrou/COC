@@ -55,13 +55,15 @@
         disabled="{{item.dice_lock}}"
         data-type="{{item._type}}" data-id="{{index}}">{{item.status}}</button>
       </view>
+<!--
       <span class="tucao">
       <text>bbb</text>
       </span>
+-->
     </block>
   </view>
   <!-- 年龄 -->
-  <view class='age'>
+  <view class='age' hidden="{{show_age_part}}">
     <text>年龄：</text>
     <slider min="8" max="99" value="38" bindchange="ageAction" show-value 
     disabled="{{age_switch}}"/>
@@ -70,9 +72,10 @@
       <button bindtap="ageConfirm" style="display: {{age_button}}; margin-left: 150px;" >确认</button>
     </span>
     <view class="age_other_part" style="display: {{age_other}}">
-      <text class="content">{{age_content}}</text>
+      <view class="content">{{age_content}}</view>
       <view class="age_item">
-        <text class="content">{{age_explanation}}</text>
+        <view class="content">{{age_explanation}}</view>
+
         <view style="display: {{age_handler1}}" > <!--20岁以下的处理-->
           <button bindtap="handlerAge1Dice">{{age_button_text}}</button>
         </view>
@@ -81,14 +84,14 @@
         </view>
 
         <view style="display: {{age_handler3}}"> <!--20岁以上的处理-->
-          <span>{{edu_result_text}}</span>
-          <span>开始进行第{{age_edu_check_times}}次检定</span>
+          <span class="content" >{{edu_result_text}}</span>
+          <span class="content" style="margin-bottom: 20px;">开始进行第{{age_edu_check_times}}次检定</span>
 
           <button bindtap="handlerAge2Dice" disabled="{{dice100_button}}" 
           style="display: {{age_handler4}}; margin-top:10px;">{{age_button_text}}</button>
         </view>
-        <view style="display: {{age_handler5}}; margin-top: 20rpx">
-          <text class="content">{{age_result}}</text>
+        <view style="display: {{age_handler5}};">
+          <view class="content">{{age_result}}</view>
         </view>
         <view style="display: {{age_handler6}}"> <!-- educheck成功的处理 -->
           <button bindtap="addEdu" disabled="{{dice100_button}}" >{{age_button_text}}</button>
@@ -118,16 +121,20 @@
               backgroundColor="#ff3333" value="{{dex_punitive_point_max}}"
               show-value />
             </view>
-            <button disabled="{{punitive_point_button}}" type="primary">确认</button>
-            <text>{{punitive_point_text}}</text>       
+            <button disabled="{{punitive_point_button}}" type="primary" bindtap="showFinalProperty">确认</button>    
           </view>
         </view>
-
-
-
       </view>
     </view>
+    <view class="final_property" hidden="{{final_property_view}}">
+      <view style="font-size:25px; margin-bottom:10px;">最终属性如下：</view>
+      <view wx:for="{{final_pro_list}}" wx:key="none">
+        {{item}}
+      </view>
+    </view>
+
   </view>
+
 <view id="footer"></view>
 
 </view>

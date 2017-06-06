@@ -88,6 +88,7 @@
 .item-part .item {
   display: flex;
   height: 60rpx;
+  margin-bottom: 10px;
 }
 
 .item-part .item .item-text {
@@ -134,6 +135,7 @@
 
 .age_other_part .content {
   font-size: 40rpx;
+  margin-bottom: 15px;
 }
 .age_item{
   display: block;
@@ -164,4 +166,9 @@
 .punitive_item .punitive_slider{
   width:75%;
   margin: 10px 0px;
+}
+
+.final_property{
+  font-size: 20px;
+  margin-top: 10px;
 }
